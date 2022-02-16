@@ -1,0 +1,12 @@
+<script>
+    let socket = new WebSocket('ws://localhost:8000/ws');
+    let timer = null;
+    socket.onopen = () => {
+        timer = setInterval(() => {
+            socket.send('hello');
+        }, 2000);
+    };
+    socket.onclose = socket.onerror = () => {
+        clearInterval(timer);
+    };
+</script>
